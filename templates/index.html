@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pet Adoption System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        nav {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+            padding: 9px 18px; /* Reduced padding */
+            font-size: 90%;    /* Smaller font size */
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .pet-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .pet-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .pet-card img {
+            width: 4in;
+            height: 4in;
+            object-fit: cover;
+        }
+        .pet-card h3 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .pet-card p {
+            margin: 5px 0;
+            color: #555;
+        }
+        .pet-card button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .pet-card button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            text-align: center;
+            margin: 20px 0;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to the Pet Adoption System</h1>
+</header>
+
+<nav>
+    <a href="/pets">View Pets</a>
+    <a href="/apply_adoption">Apply for Adoption</a>
+    <a href="/health_records">View Health Records</a>
+    <a href="/view_applications">Adoption Applications</a>
+    {% if session['user_type'] == 'Admin' %}
+        <a href="/add_pet">Add Pet</a>
+        <a href="/add_shelter">Add Shelter</a>
+        <a href="/add_health_record">Add Health Record</a>
+    {% endif %}
+    <a href="/shelters">View Shelters</a>
+    <a href="/species_summary">Species Summary</a>
+    <a href="/pets_by_shelter">Pets by Shelter</a>
+    <a href="/generate_report">Generate Report</a>
+    <a href="/register">Register</a>
+    <a href="/login">Login</a>
+    <a href="/about">About Us</a>
+
+    {% if session['user_id'] %}
+        <a href="/logout">Logout</a>
+    {% endif %}
+</nav>
+
+<div class="content">
+    <h2>Available Pets for Adoption</h2>
+
+    <div class="pet-grid">
+        {% for pet in pets %}
+        <div class="pet-card">
+            <img src="{{ pet.image_url or 'https://th.bing.com/th/id/OIP.fVkrePdlLaQ2uash_E_CXwHaEK?rs=1&pid=ImgDetMain' }}" alt="Image of {{ pet.name }}">
+            <h3>{{ pet.name }}</h3>
+            <p><strong>Species:</strong> {{ pet.species }}</p>
+            <p><strong>Breed:</strong> {{ pet.breed }}</p>
+            <p><strong>Age:</strong> {{ pet.age }}</p>
+            <p><strong>Gender:</strong> {{ pet.gender }}</p>
+            <p><strong>Shelter:</strong> {{ pet.shelter_name }}</p>
+            <button onclick="location.href='/apply_adoption'">Adopt {{ pet.name }}</button>
+            {% if session['user_type'] == 'Admin' %}
+                <form action="/update_pet_photo/{{ pet.pet_id }}" method="post" style="margin-top: 10px;">
+                    <label for="image_url">Update Photo URL:</label>
+                    <input type="text" id="image_url" name="image_url" placeholder="Enter new image URL" required>
+                    <button type="submit">Update Photo</button>
+                </form>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Pet Adoption System. All rights reserved. (Decker and Art CPSC 408 Project :)</p>
+</footer>
+
+</body>
+</html>

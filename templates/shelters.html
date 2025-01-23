@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shelters</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+    <h1>All Shelters</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Contact Phone</th>
+            <th>Contact Email</th>
+        </tr>
+        {% for shelter in shelters %}
+        <tr>
+            <td>{{ shelter.shelter_id }}</td>
+            <td>{{ shelter.shelter_name }}</td>
+            <td>{{ shelter.location }}</td>
+            <td>{{ shelter.contact_phone }}</td>
+            <td>{{ shelter.contact_email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/add_shelter">Add Shelter</a>
+</body>
+</html>

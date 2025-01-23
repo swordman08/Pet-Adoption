@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Health Record</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+    <h1>Add Health Record</h1>
+    <form method="post">
+        <label for="pet_id">Select Pet:</label><br>
+        <select id="pet_id" name="pet_id" required>
+            <option value="">-- Select a Pet --</option>
+            {% for pet in pets %}
+                <option value="{{ pet.pet_id }}">{{ pet.name }} (ID: {{ pet.pet_id }})</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="checkup_date">Checkup Date:</label><br>
+        <input type="date" id="checkup_date" name="checkup_date" required><br>
+
+        <label for="weight">Weight (kg):</label><br>
+        <input type="text" id="weight" name="weight" required><br>
+
+        <label for="vaccinations">Vaccinations:</label><br>
+        <textarea id="vaccinations" name="vaccinations"></textarea><br>
+
+        <label for="health_notes">Health Notes:</label><br>
+        <textarea id="health_notes" name="health_notes"></textarea><br><br>
+
+        <button type="submit">Add Record</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approved Applications</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+    <h1>Approved Applications</h1>
+    <h2>Application Details</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>Username</th>
+                <th>Pet Name</th>
+                <th>Species</th>
+                <th>Shelter Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in approved_applications %}
+            <tr>
+                <td>{{ app.application_id }}</td>
+                <td>{{ app.username }}</td>
+                <td>{{ app.pet_name }}</td>
+                <td>{{ app.species }}</td>
+                <td>{{ app.shelter_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Pet Health Records by Shelter</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Pet Name</th>
+                <th>Species</th>
+                <th>Checkup Date</th>
+                <th>Vaccinations</th>
+                <th>Shelter Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in pet_health_by_shelter %}
+            <tr>
+                <td>{{ record.pet_name }}</td>
+                <td>{{ record.species }}</td>
+                <td>{{ record.checkup_date }}</td>
+                <td>{{ record.vaccinations }}</td>
+                <td>{{ record.shelter_name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="/pets">Back to Pets</a>
+</body>
+</html>

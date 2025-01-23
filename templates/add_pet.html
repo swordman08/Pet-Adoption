@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Pet</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+<h1>Add a New Pet</h1>
+<form method="post">
+    <label for="shelter_id">Shelter ID:</label><br>
+    <input type="text" id="shelter_id" name="shelter_id" required><br>
+
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="species">Species:</label><br>
+    <select id="species" name="species">
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Bird">Bird</option>
+        <option value="Other">Other</option>
+    </select><br>
+
+    <label for="breed">Breed:</label><br>
+    <input type="text" id="breed" name="breed"><br>
+
+    <label for="age">Age:</label><br>
+    <input type="number" id="age" name="age"><br>
+
+    <label for="gender">Gender:</label><br>
+    <select id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select><br>
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description"></textarea><br>
+
+    <label for="arrival_date">Arrival Date:</label><br>
+    <input type="date" id="arrival_date" name="arrival_date" required><br>
+
+    <label for="image_url">Image URL:</label><br>
+    <input type="text" id="image_url" name="image_url" placeholder="https://th.bing.com/th/id/R.3fe195a8674eaaa54c58aace1ba3966b?rik=xuv2lwUY3UvWhw&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f93%2f87%2fYad1HU.jpg&ehk=HcUhRACBJjvIw%2fAWBODdvQySOoxjSE19FD9eNUWoV7k%3d&risl=&pid=ImgRaw&r=0"><br>
+
+    <button type="submit">Add Pet</button>
+</form>
+
+</body>
+</html>

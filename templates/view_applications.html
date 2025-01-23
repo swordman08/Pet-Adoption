@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Applications</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+    <h1>Adoption Applications</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>Username</th>
+                <th>Pet Name</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+                <tr>
+                    <td>{{ application['application_id'] }}</td>
+                    <td>{{ application['username'] }}</td>
+                    <td>{{ application['pet_name'] }}</td>
+                    <td>{{ application['status'] }}</td>
+                    <td>
+                        <form action="{{ url_for('approve_application', pet_id=application['application_id']) }}" method="POST" style="display:inline;">
+                            <button type="submit">Approve</button>
+                        </form>
+                        <form action="{{ url_for('reject_application', pet_id=application['application_id']) }}" method="POST" style="display:inline;">
+                            <button type="submit">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

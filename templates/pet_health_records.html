@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ pet.name }}'s Health Records</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+    <h1>Health Records for {{ pet.name }}</h1>
+    <p>Species: {{ pet.species }}</p>
+    <p>Breed: {{ pet.breed }}</p>
+
+    <table border="1">
+        <tr>
+            <th>Checkup Date</th>
+            <th>Weight</th>
+            <th>Vaccinations</th>
+            <th>Health Notes</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.checkup_date }}</td>
+            <td>{{ record.weight }}</td>
+            <td>{{ record.vaccinations }}</td>
+            <td>{{ record.health_notes }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href="/add_health_record">Add Health Record</a>
+</body>
+</html>

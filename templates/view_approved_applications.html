@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Approved Applications</title>
+</head>
+<body>
+    <a href="http://127.0.0.1:5000/" style="
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+" onmouseover="this.style.backgroundColor='#45a049';" onmouseout="this.style.backgroundColor='#4CAF50';">
+    Back to Home
+</a>
+    <h1>Approved Applications</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Application ID</th>
+                <th>Adopter Name</th>
+                <th>Pet Name</th>
+                <th>Species</th>
+                <th>Shelter Name</th>
+                <th>Application Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for app in approved_applications %}
+            <tr>
+                <td>{{ app.application_id }}</td>
+                <td>{{ app.adopter_name }}</td>
+                <td>{{ app.pet_name }}</td>
+                <td>{{ app.species }}</td>
+                <td>{{ app.shelter_name }}</td>
+                <td>{{ app.application_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="/pets">Back to Pets</a>
+</body>
+</html>
